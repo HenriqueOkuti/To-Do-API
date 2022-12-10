@@ -8,3 +8,5 @@ console.clear();
 server.listen(config.PORT, () =>
   console.log(`Listening on PORT: ${config.PORT}`)
 );
+
+export default server;
