@@ -29,3 +29,14 @@ export function deleteTask(deleteTask: schema.task) {
   }
   return { deleted: deleteTask };
 }
+
+export function editTask(oldTask: schema.task, newTask: schema.task) {
+  let editedTask: schema.task = null;
+  for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i].task === oldTask.task) {
+      editedTask = tasks[i];
+      tasks[i] = newTask;
+    }
+  }
+  return { edited: editedTask.task };
+}

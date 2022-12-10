@@ -12,3 +12,7 @@ export function findTasks() {
 export function deleteTask(task: schema.task) {
   return repository.deleteTask(task);
 }
+
+export function editTask(oldTask: schema.task, newTask: schema.task) {
+  return repository.editTask(oldTask, newTask);
+}

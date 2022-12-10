@@ -31,3 +31,16 @@ export function deleteTask(req: Request, res: Response) {
     return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
   }
 }
+
+export function editTask(req: Request, res: Response) {
+  const editTask = req.body as schema.editTask;
+  const oldTask = { task: editTask.oldTask };
+  const newTask = { task: editTask.newTask };
+
+  try {
+    const edited = service.editTask(oldTask, newTask);
+    return res.status(httpStatus.OK).send(edited);
+  } catch (error) {
+    return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+  }
+}

@@ -8,6 +8,7 @@ const taskRouter = Router();
 taskRouter
   .post('', mid.validateRequest, contr.createTask)
   .get('', contr.getTask)
-  .delete('', mid.validateRequest, contr.deleteTask);
+  .delete('', mid.validateRequest, contr.deleteTask)
+  .put('', contr.editTask);
 
 export { taskRouter };
