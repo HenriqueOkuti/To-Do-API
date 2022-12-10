@@ -4,7 +4,7 @@ import {
 } from '../factories/create-factory';
 import supertest = require('supertest');
 import * as httpStatus from 'http-status';
-import * as server from '../../src/app';
+import server from '../../src/app';
 
 const app = supertest(server);
 
@@ -32,5 +32,17 @@ describe('POST /task', () => {
     expect(response.body).toEqual({
       created: body,
     });
+  });
+});
+
+describe('GET /task', () => {
+  it('Should return all tasks and return 200 status code', async () => {
+    const body = createValidTask();
+    await app.post('/task').send(body);
+
+    const response = await app.get('/task');
+
+    expect(response.status).toEqual(httpStatus.OK);
+    expect(response.body).toEqual([body]);
   });
 });
