@@ -8,3 +8,7 @@ export function createTask(newTask: schema.task) {
 export function findTasks() {
   return repository.getTasks();
 }
+
+export function deleteTask(task: schema.task) {
+  return repository.deleteTask(task);
+}

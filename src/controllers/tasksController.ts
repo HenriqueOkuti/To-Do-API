@@ -21,3 +21,13 @@ export function getTask(req: Request, res: Response) {
     return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
   }
 }
+
+export function deleteTask(req: Request, res: Response) {
+  const deleteTask = req.body as schema.task;
+  try {
+    const deleted = service.deleteTask(deleteTask);
+    return res.status(httpStatus.OK).send(deleted);
+  } catch (error) {
+    return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+  }
+}

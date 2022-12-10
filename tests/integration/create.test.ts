@@ -49,3 +49,27 @@ describe('GET /task', () => {
     expect(response.body).toEqual([body]);
   });
 });
+
+describe('DELETE /task', () => {
+  it('Should delete task and return 200 status code', async () => {
+    const body = createValidTask();
+    await app.post('/task').send(body);
+    const response = await app.delete('/task').send(body);
+
+    expect(response.status).toEqual(httpStatus.OK);
+    expect(response.body).toEqual({
+      deleted: body,
+    });
+  });
+
+  it('GET /task: Should return empty array of tasks and return 200 status code', async () => {
+    const body = createValidTask();
+    await app.post('/task').send(body);
+    await app.delete('/task').send(body);
+
+    const response = await app.get('/task');
+
+    expect(response.status).toEqual(httpStatus.OK);
+    expect(response.body).toEqual([]);
+  });
+});
