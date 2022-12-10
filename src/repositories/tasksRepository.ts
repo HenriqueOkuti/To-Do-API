@@ -1,6 +1,6 @@
 import * as schema from '../schemas/taskSchema';
 
-const tasks: Object[] = [];
+let tasks: Object[] = [];
 
 export function insertNewTask(newTask: schema.task) {
   tasks.push(newTask);
@@ -9,4 +9,12 @@ export function insertNewTask(newTask: schema.task) {
       task: newTask.task,
     },
   };
+}
+
+export function getTasks() {
+  return tasks;
+}
+
+export function cleanAllTasks() {
+  tasks = [];
 }

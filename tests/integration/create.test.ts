@@ -5,12 +5,15 @@ import {
 import supertest = require('supertest');
 import * as httpStatus from 'http-status';
 import server from '../../src/app';
+import { cleanAllTasks } from '../../src/repositories';
 
 const app = supertest(server);
 
 beforeAll(() => {});
 
-beforeEach(() => {});
+beforeEach(() => {
+  cleanAllTasks();
+});
 
 afterAll(() => {});
 

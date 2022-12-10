@@ -4,3 +4,7 @@ import * as schema from '../schemas/taskSchema';
 export function createTask(newTask: schema.task) {
   return repository.insertNewTask(newTask);
 }
+
+export function findTasks() {
+  return repository.getTasks();
+}

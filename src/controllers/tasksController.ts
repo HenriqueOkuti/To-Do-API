@@ -12,3 +12,12 @@ export function createTask(req: Request, res: Response) {
     return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
   }
 }
+
+export function getTask(req: Request, res: Response) {
+  try {
+    const tasks = service.findTasks();
+    return res.status(httpStatus.OK).send(tasks);
+  } catch (error) {
+    return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+  }
+}

@@ -7,8 +7,6 @@ const taskRouter = Router();
 
 taskRouter
   .post('', mid.validateRequest, contr.createTask)
-  .get('', (req, res) => {
-    res.sendStatus(httpStatus.OK);
-  });
+  .get('', contr.getTask);
 
 export { taskRouter };
