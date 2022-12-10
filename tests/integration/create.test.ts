@@ -1,6 +1,7 @@
 import {
   createValidTask,
   createInvalidTask,
+  createEditedTask,
 } from '../factories/create-factory';
 import supertest = require('supertest');
 import * as httpStatus from 'http-status';
@@ -71,5 +72,35 @@ describe('DELETE /task', () => {
 
     expect(response.status).toEqual(httpStatus.OK);
     expect(response.body).toEqual([]);
+  });
+});
+
+describe('PUT /task', () => {
+  it('Should edit task and return 200 status code', async () => {
+    const body = createValidTask();
+    await app.post('/task').send(body);
+    const newBody = createEditedTask();
+    const response = await app.put('/task').send(newBody);
+
+    expect(response.status).toEqual(httpStatus.OK);
+    expect(response.body).toEqual({
+      edited: newBody.oldTask,
+    });
+  });
+
+  it('GET /task: Should return updated tasks and return 200 status code', async () => {
+    const body = createValidTask();
+    await app.post('/task').send(body);
+    const newBody = createEditedTask();
+    await app.put('/task').send(newBody);
+
+    const response = await app.get('/task');
+
+    expect(response.status).toEqual(httpStatus.OK);
+    expect(response.body).toEqual([
+      {
+        task: newBody.newTask,
+      },
+    ]);
   });
 });

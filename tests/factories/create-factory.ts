@@ -9,3 +9,10 @@ export function createInvalidTask() {
     invalidTask: 'This is a invalid task',
   };
 }
+
+export function createEditedTask() {
+  return {
+    oldTask: 'This is a task',
+    newTask: 'This is an edited task',
+  };
+}
